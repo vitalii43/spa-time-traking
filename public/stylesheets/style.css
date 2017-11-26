@@ -1,0 +1,34 @@
+body {
+  padding: 50px;
+  font: 15px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+#main {
+  width: 60%;
+  margin: auto; }
+
+.delete {
+  float: right; }
+
+.emploee {
+  display: flow-root; }
+  .emploee div {
+    float: left; }
+
+header {
+  width: 60%;
+  margin: auto; }
+
+#creatingMember {
+  padding: 5px; }
+  #creatingMember #nameMember {
+    width: 40%;
+    float: left; }
+
+@media only screen and (max-width: 768px) {
+  header {
+    width: 100%; }
+  #main {
+    width: 100%; } }
