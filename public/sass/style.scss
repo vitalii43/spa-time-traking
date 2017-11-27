@@ -33,6 +33,14 @@ header{
     float:left;
   }
 }
+
+#setingsContainer{
+  .settings{
+    width: 40%;
+    float: left;
+  }
+}
+
 @media only screen and (max-width: 768px){
   header{
     width: 100%;
@@ -40,4 +48,7 @@ header{
   #main {
     width: 100%;
   }
+}
+#calendar{
+  float:right;
 }

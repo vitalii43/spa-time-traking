@@ -1,4 +1,4 @@
-var S4, getMembers, guid, randomDate, scotchApp;
+var S4, clearCalendar, getMembers, guid, randomDate, scotchApp;
 
 S4 = function() {
   return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
@@ -23,14 +23,14 @@ scotchApp.config([
   {
       templateUrl: 'pages/home.html',
       controller: 'mainController'
-    }).when('/about',
+    }).when('/settings',
   {
-      templateUrl: 'pages/about.html',
-      controller: 'aboutController'
-    }).when('/contact',
+      templateUrl: 'pages/settings.html',
+      controller: 'settingsController'
+    }).when('/analytics',
   {
-      templateUrl: 'pages/contact.html',
-      controller: 'contactController'
+      templateUrl: 'pages/analytics.html',
+      controller: 'analyticsController'
     });
   }
 ]);
@@ -51,8 +51,7 @@ getMembers = function() {
 };
 
 scotchApp.controller('mainController', function($scope, $route) {
-  var list;
-  list = ['vova', 'vasya', 'dffd', 'dffdfd'];
+  //list=['vova','vasya','dffd','dffdfd']
   $scope.listMembers = getMembers();
   $scope.deleteMember = function(key) {
     localStorage.removeItem(key);
@@ -75,10 +74,35 @@ scotchApp.controller('mainController', function($scope, $route) {
   };
 });
 
-scotchApp.controller('aboutController', function($scope) {
-  return $scope.message = 'Look! I am an about page.';
+clearCalendar = function() {
+  return pickmeup('.date').clear();
+};
+
+scotchApp.controller('settingsController', function($scope) {
+  var element;
+  $scope.listMembers = getMembers();
+  console.log(getMembers());
+  element = document.querySelector(".date");
+  pickmeup(element, {
+    flat: true,
+    mode: 'multiple'
+  });
+  return element.addEventListener('pickmeup-change', function(e) {
+    var key, member;
+    key = $("#selMember option:selected").attr('data-id');
+    member = JSON.parse(localStorage.getItem(key));
+    localStorage.removeItem(key);
+    if (document.querySelector('#selDay').value === 'Відпрацьовані') {
+      member.working = e.detail.date;
+      localStorage.setItem(key, JSON.stringify(member));
+    } else {
+      member.notworking = e.detail.date;
+      localStorage.setItem(key, JSON.stringify(member));
+    }
+    return console.log(e.detail.date);
+  });
 });
 
-scotchApp.controller('contactController', function($scope) {
+scotchApp.controller('analyticsController', function($scope) {
   return $scope.message = 'Contact us! JK. This is just a demo.';
 });

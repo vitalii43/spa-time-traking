@@ -15,14 +15,14 @@ scotchApp.config(['$routeProvider', '$locationProvider', ($routeProvider, $locat
     controller  : 'mainController'
   })
 
-  .when('/about', {
-    templateUrl : 'pages/about.html'
-    controller  : 'aboutController'
+  .when('/settings', {
+    templateUrl : 'pages/settings.html'
+    controller  : 'settingsController'
   })
 
-  .when('/contact', {
-    templateUrl : 'pages/contact.html'
-    controller  : 'contactController'
+  .when('/analytics', {
+    templateUrl : 'pages/analytics.html'
+    controller  : 'analyticsController'
   });
 
 ]);
@@ -35,7 +35,7 @@ getMembers=->
   arrMembers
 
 scotchApp.controller('mainController', ($scope,$route)->
-  list=['vova','vasya','dffd','dffdfd']
+  #list=['vova','vasya','dffd','dffdfd']
   $scope.listMembers=getMembers();
   $scope.deleteMember=(key)->
     localStorage.removeItem(key)
@@ -55,13 +55,33 @@ scotchApp.controller('mainController', ($scope,$route)->
     else
       console.log "empty name"; return;
 );
+clearCalendar=-> pickmeup('.date').clear();
 
-scotchApp.controller('aboutController', ($scope)->
-  $scope.message = 'Look! I am an about page.';
+scotchApp.controller('settingsController', ($scope)->
+  $scope.listMembers=getMembers();
+  console.log(getMembers())
+
+  element=document.querySelector(".date")
+  pickmeup(element,{
+    flat : true,
+    mode : 'multiple'
+  });
+  element.addEventListener('pickmeup-change', (e) ->
+    key=$("#selMember option:selected").attr('data-id')
+    member=JSON.parse(localStorage.getItem(key))
+    localStorage.removeItem(key)
+
+    if document.querySelector('#selDay').value=='Відпрацьовані'
+      member.working=e.detail.date
+      localStorage.setItem(key,JSON.stringify(member))
+    else
+      member.notworking=e.detail.date
+      localStorage.setItem(key,JSON.stringify(member))
+    console.log(e.detail.date)
+  )
 );
 
-
-scotchApp.controller('contactController', ($scope)->
+scotchApp.controller('analyticsController', ($scope)->
   $scope.message = 'Contact us! JK. This is just a demo.';
 );
 
