@@ -10,16 +10,15 @@ gulp.task('sass', function(){
         .pipe(gulp.dest('public/stylesheets'))
 
 });
-
 gulp.task('coffee', function() {
-    gulp.src('./public/*.coffee')
+    gulp.src('./public/coffeescripts/*.coffee')
         .pipe(coffeescript({bare: true}))
         .pipe(gulp.dest('./public/javascripts'))
 });
 
 gulp.task('watch', function (){
     gulp.watch('public/sass/*.scss', ['sass']);
-    gulp.watch('public/*.coffee',['coffee'])
+    gulp.watch('public/coffeescripts/*.coffee',['coffee'])
     // Other watchers
 });
 
