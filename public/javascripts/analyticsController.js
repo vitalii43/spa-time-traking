@@ -89,6 +89,10 @@ scotchApp.controller('analyticsController', function($scope, $route) {
     return document.querySelector("button.list-group-item").classList.add('active');
   });
   memberData = getDatesData(member, months);
+  $scope.options = {
+    responsive: false,
+    maintainAspectRatio: false
+  };
   $scope.labels = months;
   $scope.series = ['Відпрацьовані', 'Пропущені і вихідні'];
   $scope.options = {

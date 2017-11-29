@@ -1,13 +1,15 @@
 body {
   padding: 50px;
   font: 15px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  body header {
+    width: 70%;
+    margin: auto; }
+  body #main {
+    width: 70%;
+    margin: auto; }
 
 a {
   color: #00B7FF; }
-
-#main {
-  width: 60%;
-  margin: auto; }
 
 .delete {
   float: right; }
@@ -16,10 +18,8 @@ a {
   display: flow-root; }
   .emploee div {
     float: left; }
-
-header {
-  width: 60%;
-  margin: auto; }
+    .emploee div h4 {
+      word-wrap: break-word; }
 
 #creatingMember {
   padding: 5px; }
@@ -38,4 +38,17 @@ header {
     width: 100%; } }
 
 #calendar {
+  float: right;
+  margin-right: 25%; }
+
+#selectChart {
+  width: 25%;
+  float: left;
+  margin-right: 5px;
+  word-wrap: break-word; }
+
+#canvasContainer {
+  width: 65%;
+  height: 360px;
+  position: relative;
   float: right; }

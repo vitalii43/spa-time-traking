@@ -2,10 +2,11 @@ scotchApp.controller('settingsController', ($scope)->
   $scope.listMembers=getMembers();
 
   element=document.querySelector(".date")
-  pickmeup(element,{
+  pickmeup(element, {
     flat : true,
     mode : 'multiple'
-  });
+  })
+
   element.addEventListener('pickmeup-change', (e) ->
     key=$("#selMember option:selected").attr('data-id')
     member=JSON.parse(localStorage.getItem(key))
@@ -19,3 +20,4 @@ scotchApp.controller('settingsController', ($scope)->
       localStorage.setItem(key,JSON.stringify(member))
   )
 );
+

@@ -1,46 +1,48 @@
+$mainsize: 70%;
+
 body {
   padding: 50px;
   font: 15px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
 
+  header{
+    width: $mainsize;
+    margin: auto;
+  }
+  #main{
+     width: $mainsize;
+     margin: auto;
+   }
+}
 a {
   color: #00B7FF;
-}
-#main{
-  width: 60%;
-  margin: auto;
-
 }
 .delete{
   float: right;
 }
-
 .emploee{
   display: flow-root;
   div{
     float: left;
+    h4{
+      word-wrap: break-word;
+    }
   }
 }
 
-header{
-  width: 60%;
-  margin: auto;
-}
 #creatingMember{
   padding: 5px;
   #nameMember{
     width: 40%;
     float:left;
   }
-}
 
+}
 #setingsContainer{
   .settings{
     width: 40%;
     float: left;
   }
 }
-
 @media only screen and (max-width: 768px){
   header{
     width: 100%;
@@ -51,4 +53,18 @@ header{
 }
 #calendar{
   float:right;
+  margin-right: 25%;
+}
+
+#selectChart{
+  width: 25%;
+  float:left;
+  margin-right: 5px;
+  word-wrap: break-word;
+}
+#canvasContainer{
+  width: 65%;
+  height: 360px;
+  position: relative;
+  float: right;
 }

@@ -7,7 +7,7 @@
     <h2>Team: pied piper</h2>
     <li class="list-group-item emploee"  ng-repeat="x in listMembers">
         <div><h4>{{x.name}}</h4>
-            <p>Since<span class="badge">{{x.dateStart}}</span></p>
+            <p>Work since <span class="date">{{x.dateStart}}</span></p>
         </div>
 
         <button type="button" class="btn btn-danger delete" ng-click="deleteMember(x.id)">delete</button>

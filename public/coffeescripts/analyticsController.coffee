@@ -28,7 +28,10 @@ scotchApp.controller('analyticsController', ($scope,$route)->
   )
 
   memberData=getDatesData(member,months)
-
+  $scope.options =  {
+    responsive: false,
+    maintainAspectRatio: false
+  }
   $scope.labels = months
   $scope.series = ['Відпрацьовані', 'Пропущені і вихідні'];
   $scope.options = { legend: { display: true}}
