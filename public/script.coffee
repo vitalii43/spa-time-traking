@@ -1,7 +1,7 @@
 S4=-> (((1+Math.random())*0x10000)|0).toString(16).substring(1);
 guid=-> (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
 
-scotchApp = angular.module('scotchApp', ['ngRoute']);
+scotchApp = angular.module('scotchApp', ['ngRoute',"chart.js"]);
 
 scotchApp.config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider)->
   $locationProvider.html5Mode({
@@ -80,8 +80,47 @@ scotchApp.controller('settingsController', ($scope)->
     console.log(e.detail.date)
   )
 );
+getDatesData=(member,months)->
+  workingArr=JSON.parse(member).working
+  notworkingArr=JSON.parse(member).notworking
 
-scotchApp.controller('analyticsController', ($scope)->
-  $scope.message = 'Contact us! JK. This is just a demo.';
+  workingDay=(new Date(item) for item in workingArr)
+  arr=(months[item.getMonth()] for item in workingDay)
+  workingMonth= arr.filter((elem, index, self)-> index == self.indexOf(elem))
+  countWorking=(0 for [0..11])
+  countWorking[item.getMonth()]++ for item in workingDay
+
+  notworkingDay=(new Date(item) for item in notworkingArr)
+  arr=(months[item.getMonth()] for item in notworkingDay)
+  notworkingMonth= arr.filter((elem, index, self)-> index == self.indexOf(elem))
+  countNotWorking=(0 for [0..11])
+  countNotWorking[item.getMonth()]++ for item in notworkingDay
+  console.log(countNotWorking,countWorking)
+
+  {"working":countWorking,"notWorking":countNotWorking}
+
+scotchApp.controller('analyticsController', ($scope,$route)->
+
+  months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+  member=localStorage.getItem($("#selMem option:selected").attr('data-id')) || JSON.stringify(getMembers()[0])
+  console.log(member)
+  memberData=getDatesData(member,months)
+
+  $scope.labels = months
+  $scope.series = ['Відпрацьовані', 'Пропущені і вихідні'];
+  $scope.options = { legend: { display: true}}
+  $scope.listMembers=getMembers();
+  $scope.data = [
+    memberData.working,
+    memberData.notWorking]
+  $("#selMem").change(()->
+
+    member=localStorage.getItem($("#selMem option:selected").attr('data-id'))
+    console.log(member)
+    memberData=getDatesData(member,months)
+    $scope.data[0]= memberData.working
+    $scope.data[1]=memberData.notWorking
+    return
+  )
+
 );
-

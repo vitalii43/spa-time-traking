@@ -1,5 +1,13 @@
-<div class="jumbotron text-center">
-    <h1>Contact Page</h1>
-
-    <p>{{ message }}</p>
+<div>
+    <div id="selectMember">
+        <label for="selMem">Вибрати учасника команди:</label>
+        <br/>
+        <select class="form-control" id="selMem" >
+            <option ng-repeat="x in listMembers" data-id="{{x.id}}" class="nameOfMember">{{x.name}}</option>
+        </select>
+    </div>
+    <br/>
+    <canvas id="bar" class="chart chart-bar"
+            chart-data="data" chart-labels="labels" chart-options="options" chart-series="series">
+    </canvas>
 </div>
