@@ -1,1 +1,1 @@
-heror: https://myfirstsapapp.herokuapp.com/
+heroku: https://myfirstsapapp.herokuapp.com/
