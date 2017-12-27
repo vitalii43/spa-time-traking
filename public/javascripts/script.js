@@ -1,4 +1,4 @@
-var S4, clearCalendar, getMembers, guid, randomDate, scotchApp;
+var S4, getMembers, guid, randomDate, scotchApp;
 
 scotchApp = angular.module('scotchApp', ['ngRoute', "chart.js"]);
 
@@ -48,8 +48,4 @@ getMembers = function() {
     }
   }
   return arrMembers;
-};
-
-clearCalendar = function() {
-  return pickmeup('.date').clear();
 };

@@ -1,7 +1,10 @@
 scotchApp.controller('settingsController', ($scope)->
   $scope.listMembers=getMembers();
+  $scope.selectedMemb=getMembers()[0].name
+  $scope.WorkingOrHoliday="Відпрацьовані"
 
   element=document.querySelector(".date")
+
   pickmeup(element, {
     flat : true,
     mode : 'multiple'
@@ -19,5 +22,7 @@ scotchApp.controller('settingsController', ($scope)->
       member.notworking=e.detail.date
       localStorage.setItem(key,JSON.stringify(member))
   )
+  
+  $scope.clearCalendar=()-> pickmeup('.date').clear();
 );
 

@@ -23,7 +23,8 @@ scotchApp.controller('analyticsController', ($scope,$route)->
   months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
   member= JSON.stringify(getMembers()[0])
   console.log(getMembers()[0].name)
-  $(document).ready(->
+
+  angular.element(document).ready(->
     document.querySelector("button.list-group-item").classList.add('active')
   )
 
@@ -32,22 +33,25 @@ scotchApp.controller('analyticsController', ($scope,$route)->
     responsive: false,
     maintainAspectRatio: false
   }
+
   $scope.labels = months
   $scope.series = ['Відпрацьовані', 'Пропущені і вихідні'];
   $scope.options = { legend: { display: true}}
   $scope.listMembers=getMembers();
+
   $scope.data = [
     memberData.working,
     memberData.notWorking]
+
   $scope.change=(id,$event)->
     document.querySelectorAll("button.list-group-item").forEach (element,index, array)->
       element.classList.remove('active')
-    console.log($event)
+    #console.log($event)
     $event.target.className+=" active"
 
     member=localStorage.getItem(id)
     memberData=getDatesData(member,months)
-    $scope.data[0]= memberData.working
+    $scope.data[0]=memberData.working
     $scope.data[1]=memberData.notWorking
     return
 );

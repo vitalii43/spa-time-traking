@@ -1,12 +1,14 @@
 scotchApp.controller('settingsController', function($scope) {
   var element;
   $scope.listMembers = getMembers();
+  $scope.selectedMemb = getMembers()[0].name;
+  $scope.WorkingOrHoliday = "Відпрацьовані";
   element = document.querySelector(".date");
   pickmeup(element, {
     flat: true,
     mode: 'multiple'
   });
-  return element.addEventListener('pickmeup-change', function(e) {
+  element.addEventListener('pickmeup-change', function(e) {
     var key, member;
     key = $("#selMember option:selected").attr('data-id');
     member = JSON.parse(localStorage.getItem(key));
@@ -19,4 +21,7 @@ scotchApp.controller('settingsController', function($scope) {
       return localStorage.setItem(key, JSON.stringify(member));
     }
   });
+  return $scope.clearCalendar = function() {
+    return pickmeup('.date').clear();
+  };
 });

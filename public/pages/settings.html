@@ -1,19 +1,23 @@
 <!-- about.html -->
 <div id="setingsContainer">
+   
     <div class="settings">
         <div id="selectMember">
             <label for="selMember">Учасника команди:</label>
-            <select class="form-control" id="selMember" onchange="clearCalendar()">
-                <option ng-repeat="x in listMembers" data-id="{{x.id}}" class="nameOfMember">{{x.name}}</option>
+            <select ng-model="selectedMemb" class="form-control"  id="selMember" ng-change="clearCalendar()">
+                <option ng-repeat="x in listMembers" 
+                        ng-selected="$first"
+                        value="{{x.name}}" 
+                        data-id="{{x.id}}" 
+                        class="nameOfMember">{{x.name}}</option>
             </select>
         </div>
         <div class="selectAction">
 
             <label for="selDay">Дні:</label>
-            <select class="form-control" id="selDay" onchange="clearCalendar()">
+            <select ng-model="WorkingOrHoliday" class="form-control" id="selDay" ng-change="clearCalendar()">
                 <option>Відпрацьовані</option>
                 <option>Пропущені</option>
-
             </select>
         </div>
     </div>

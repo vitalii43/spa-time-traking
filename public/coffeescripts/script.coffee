@@ -35,5 +35,3 @@ getMembers=->
     if localStorage.key(i).indexOf('member')!=-1
       arrMembers.push JSON.parse(localStorage.getItem(localStorage.key(i)))
   arrMembers
-
-clearCalendar=-> pickmeup('.date').clear();

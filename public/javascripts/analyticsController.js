@@ -85,7 +85,7 @@ scotchApp.controller('analyticsController', function($scope, $route) {
   months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   member = JSON.stringify(getMembers()[0]);
   console.log(getMembers()[0].name);
-  $(document).ready(function() {
+  angular.element(document).ready(function() {
     return document.querySelector("button.list-group-item").classList.add('active');
   });
   memberData = getDatesData(member, months);
@@ -106,7 +106,7 @@ scotchApp.controller('analyticsController', function($scope, $route) {
     document.querySelectorAll("button.list-group-item").forEach(function(element, index, array) {
       return element.classList.remove('active');
     });
-    console.log($event);
+    //console.log($event)
     $event.target.className += " active";
     member = localStorage.getItem(id);
     memberData = getDatesData(member, months);
