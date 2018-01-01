@@ -8,17 +8,20 @@
     {
         url: "/analytics",
         templateUrl: 'pages/analytics.html',
-        controller: 'AnalyticsController'
+        controller: 'AnalyticsController',
+        controllerAs: 'vm'
       }).state("main",
     {
         url: "/main",
         templateUrl: 'pages/home.html',
-        controller: 'MainController'
+        controller: 'MainController',
+        controllerAs: 'vm'
       }).state("settings",
     {
         url: "/settings",
         templateUrl: 'pages/settings.html',
-        controller: 'SettingsController'
+        controller: 'SettingsController',
+        controllerAs: 'vm'
       });
       return $urlRouterProvider.otherwise('main');
     }

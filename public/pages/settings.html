@@ -4,8 +4,8 @@
     <div class="settings">
         <div id="selectMember">
             <label for="selMember">Учасника команди:</label>
-            <select ng-model="selectedMemb" class="form-control"  id="selMember" ng-change="clearCalendar()">
-                <option ng-repeat="x in listMembers" 
+            <select ng-model="vm.selectedMemb" class="form-control"  id="selMember" ng-change="vm.clearCalendar()">
+                <option ng-repeat="x in vm.listMembers" 
                         ng-selected="$first"
                         value="{{x.name}}" 
                         data-id="{{x.id}}" 
@@ -15,7 +15,7 @@
         <div class="selectAction">
 
             <label for="selDay">Дні:</label>
-            <select ng-model="WorkingOrHoliday" class="form-control" id="selDay" ng-change="clearCalendar()">
+            <select ng-model="vm.WorkingOrHoliday" class="form-control" id="selDay" ng-change="vm.clearCalendar()">
                 <option>Відпрацьовані</option>
                 <option>Пропущені</option>
             </select>

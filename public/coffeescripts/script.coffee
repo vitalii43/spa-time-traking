@@ -1,4 +1,4 @@
-do ->
+(->
   angular
     .module('scotchApp', [
       'ui.router',
@@ -12,16 +12,20 @@ do ->
           url:"/analytics"
           templateUrl : 'pages/analytics.html'
           controller  : 'AnalyticsController'
+          controllerAs: 'vm'
         })
         .state("main",{
           url:"/main"
           templateUrl : 'pages/home.html'
           controller  : 'MainController'
+          controllerAs: 'vm'
         })
         .state("settings",{
           url:"/settings"
           templateUrl : 'pages/settings.html'
           controller  : 'SettingsController'
+          controllerAs: 'vm'
         })        
       $urlRouterProvider.otherwise('main');
     ]);
+)()

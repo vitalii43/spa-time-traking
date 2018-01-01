@@ -1,4 +1,4 @@
-do ->
+(->
   angular
     .module("scotchApp")
     .service("Guid",->
@@ -42,3 +42,4 @@ do ->
         {"working":countWorking,"notWorking":countNotWorking}
       this  
     )
+)()

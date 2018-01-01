@@ -1,9 +1,14 @@
 (function() {
-  return angular.module("scotchApp").controller('SettingsController', function($scope, Members) {
-    var element;
-    $scope.listMembers = Members.getMembers();
-    $scope.selectedMemb = Members.getMembers()[0].name;
-    $scope.WorkingOrHoliday = "Відпрацьовані";
+  var SettingsController;
+  SettingsController = function($scope, Members) {
+    var clearCalendar, element, init, vm;
+    vm = this;
+    init = function() {
+      vm.listMembers = Members.getMembers();
+      vm.selectedMemb = Members.getMembers()[0].name;
+      vm.WorkingOrHoliday = "Відпрацьовані";
+      vm.clearCalendar = clearCalendar;
+    };
     element = document.querySelector(".date");
     pickmeup(element, {
       flat: true,
@@ -22,8 +27,10 @@
         return localStorage.setItem(key, JSON.stringify(member));
       }
     });
-    return $scope.clearCalendar = function() {
+    clearCalendar = function() {
       return pickmeup('.date').clear();
     };
-  });
+    init();
+  };
+  return angular.module("scotchApp").controller('SettingsController', SettingsController);
 })();
