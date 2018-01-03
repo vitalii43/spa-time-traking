@@ -1,3 +1,9 @@
+<style>
+    .list_group:nth-child({{vm.ActiveMember}}) {
+        background-color: #337ab7;
+        border-color: #337ab7;
+     };
+</style>
 <div>
     <div id="selectChart">
         <label >Вибрати учасника команди:</label>
@@ -6,8 +12,11 @@
         <div class="list-group">
             <button type="button"
                     class="list-group-item list-group-item-action"
-                    ng-repeat="x in vm.listMembers" data-id="{{x.id}}"
-                    class="nameOfMember" ng-click="vm.change(x.id,$event)">
+                    class="nameOfMember"
+                    ng-repeat="x in vm.listMembers" 
+                    data-id="{{x.id}}"
+                    number={{$index+1}}
+                    ng-click="vm.change(x.id,$event)">
                 <p>{{x.name}}</p>
             </button>
         </div>

@@ -1,6 +1,6 @@
 (function() {
   var AnalyticsController;
-  AnalyticsController = function($scope, $route, Members, DatesData) {
+  AnalyticsController = function($scope, $route, MembersService, DatesDataService) {
     var change, getDatesData, init, member, memberData, months, vm;
     vm = this;
     init = function() {
@@ -11,17 +11,17 @@
           display: true
         }
       };
-      vm.listMembers = Members.getMembers();
+      vm.listMembers = MembersService.getMembers();
       vm.data = [memberData.working, memberData.notWorking];
-      return vm.change = change;
+      vm.change = change;
     };
     months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    member = JSON.stringify(Members.getMembers()[0]);
-    memberData = DatesData.getDatesData(member, months);
+    member = JSON.stringify(MembersService.getMembers()[0]);
+    memberData = DatesDataService.getDatesData(member, months);
     angular.element(document).ready(function() {
       return document.querySelector("button.list-group-item").classList.add('active');
     });
-    getDatesData = DatesData.getDatesData;
+    getDatesData = DatesDataService.getDatesData;
     change = function(id, $event) {
       document.querySelectorAll("button.list-group-item").forEach(function(element, index, array) {
         return element.classList.remove('active');
