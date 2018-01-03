@@ -16,6 +16,7 @@
                     ng-repeat="x in vm.listMembers" 
                     data-id="{{x.id}}"
                     number={{$index+1}}
+                    ng-class="{'active':vm.buttonActive==$index+1}"
                     ng-click="vm.change(x.id,$event)">
                 <p>{{x.name}}</p>
             </button>

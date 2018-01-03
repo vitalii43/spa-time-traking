@@ -10,21 +10,17 @@
         memberData.working,
         memberData.notWorking]
       vm.change=change
+      vm.buttonActive=1
       return
       
     months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
     member= JSON.stringify(MembersService.getMembers()[0]) 
     memberData=DatesDataService.getDatesData(member,months)    
-      
-    angular.element(document).ready(->
-      document.querySelector("button.list-group-item").classList.add('active')
-    )
+    
     getDatesData=DatesDataService.getDatesData;
     change=(id,$event)->
-      document.querySelectorAll("button.list-group-item").forEach (element,index, array)->
-        element.classList.remove('active')
-      #console.log($event)
-      $event.target.className+=" active"
+     
+      vm.buttonActive= $event.currentTarget.attributes.number.value
       member=localStorage.getItem(id)
       memberData=getDatesData(member,months)
       vm.data[0]=memberData.working
