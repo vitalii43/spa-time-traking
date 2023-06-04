@@ -1,15 +1,15 @@
 <div id="creatingMember">
     <input class="form-control" id="nameMember"/>
-    <button class="btn btn-default" id="addMember" ng-click="addMember()" >add</button>
+    <button class="btn btn-default" id="addMember" ng-click="vm.addMember()" >add</button>
 </div>
 
 <ul class="list-group">
     <h2>Team: pied piper</h2>
-    <li class="list-group-item emploee"  ng-repeat="x in listMembers">
+    <li class="list-group-item emploee"  ng-repeat="x in vm.listMembers">
         <div><h4>{{x.name}}</h4>
             <p>Work since <span class="date">{{x.dateStart}}</span></p>
         </div>
 
-        <button type="button" class="btn btn-danger delete" ng-click="deleteMember(x.id)">delete</button>
+        <button type="button" class="btn btn-danger delete" ng-click="vm.deleteMember(x.id)">delete</button>
     </li>
 </ul>

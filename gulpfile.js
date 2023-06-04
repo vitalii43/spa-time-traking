@@ -18,12 +18,16 @@ gulp.task('coffee', function() {
         .pipe(livereload());
 });
 
+gulp.task('html', function(){
+    gulp.src("./public/**/*.html")
+    .pipe(livereload());
+});
+
 gulp.task('watch', function (){
     livereload.listen();
     gulp.watch('public/sass/*.scss', ['sass']);
     gulp.watch('public/coffeescripts/*.coffee',['coffee'])
-
-    // Other watchers
+    gulp.watch('public/**/*.html',['html']);
 });
 
 
